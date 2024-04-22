@@ -114,7 +114,7 @@ El haber separado los datos en lotes ayuda a que el modelo reciba los datos con 
 
 Se utilizo un modelo secuencial preentrenado de tensorflow que ya divide las imágenes en pequeñas cajas con cada caja conteniendo un elemento de la imagen como una persona, un coche, o, en este caso, un perro. Este modelo recibe un tamaño de entrada ` [None, 224, 224, 3]` en donde None es el lote, 224 es la altura, 224 es la anchura y 3 es la cantidad de colores (rojo, verde y azul). Se agregó una capa Dense con 120 unidades para los datos de salida, las cuales representan las 120 clases existentes en este proyecto que son las 120 razas de perro diferentes. Se utiliza la función de activación `softmax` para obtener la probabilidad de cada clase.
 
-*explicar métricas...*
+Se utilizará la función `CategoricalCrossentropy()` para calcular la pérdida entre las etiquetas verdaderas y las predicciones del modelo. Se utilizará el optimizador *Adam* para ajustar los pesos de la red neuronal durante el proceso de entrenamiento. Finalmente, para evaluar el modelo se utilizará la métrica *accuracy* (exactitud) para evaluar el rendimiento del modelo. Esta métrica es la fracción de muestras clasificadas correctamente.
 
 El modelo preentrenado fue recuperado de: https://www.kaggle.com/models/google/mobilenet-v2/tensorFlow2/130-224-classification/1 
 
