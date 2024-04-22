@@ -85,8 +85,21 @@ Sin embargo, este método resulto ser ineficiente ya que el subconjunto de datos
 Debido a esto se decidió regresar a la idea original de utilizar la API de Tensorflow para preprocesar los datos, por lo cual a continuación se ofrece una explicación de las funciones utilizadas.
 
 ### Convertir imágenes a tensores
+Un tensor es un arreglo multidimensional con una capacidad más alta que una matriz tradicional. 
+* `tf.io.read_file()` lee el archivo en su formato original.
+* `tf.image.decode_jpeg()` decodifica una imagen y la convierte a un tensor tipo int, `channels` indica los canales de color deseados, en este caso 3 son RGB en escala del 0 al 255.
+* `tf.image.convert_image_dtype()` convierte una imagen a un tipo de dato especificado escalando sus valores si es necesario. Si el dato especifiado es de tipo flotante los valores de escalan del 0 al 1.
+* `tf.image.resize()` redimensiona la imagen a los valores especificados.
 ### Dividir los datos en batches
+* `tf.constant(X | y)` se usa para crear un tensor constante a partir de los nombres de archivo y las etiquetas para agrupar los datos. Si X es una lista de rutas de archivos de imágenes entonces, `tf.constant(X)` contendría una representación constante de las rutas de archivos de imágenes en forma de un tensor TensorFlow.
+* `tf.data.Dataset.from_tensor_slices()` toma el tensor constante creado anteriormente y lo convierte en un conjunto de datos TensorFlow. Cada elemento de este conjunto de datos será un elemento de X. Si X es una lista de rutas de archivos de imágenes, entonces cada elemento del conjunto de datos será una ruta de archivo de imagen.
+* `shuffle` se usa para revolver el dataset creado anteriormente con el objetivo de que el modelo entrene con los datos en orden aleatorio. Esto solo se usa para los datos de entrenamiento.
+* `map()` se utiliza para aplicar una función a cada elemento del conjunto de datos. En este caso, la función que se aplica es *get_image_label*, la cual le asigna su etiqueta correspondiente a cada imagen. 
+* `batch` se usa para agrupar los elementos de un conjunto de datos en lotes (batches) de un tamaño específico, en este caso 32. Si el número total de datos no es divisible de manera exacta por el tamaño del lote (BATCH_SIZE), TensorFlow ajustará automáticamente el último lote para incluir el número restante de datos. Esto significa que el último lote podría tener un tamaño menor que el tamaño del lote especificado.
 
+Para más informaión consultar la documentación de la API de TensorFlow: https://www.tensorflow.org/api_docs
+
+Se decidió dividir los datos en lotes o batches con el objetivo de que el modelo se adapte de manera más robusta a la distribución de los datos. Esto puede ayudar a prevenir el sobreajuste al presentar al modelo una variedad de ejemplos en cada paso de entrenamiento gracias a la aleatoriedad de los lotes.
 ## Selección del modelo
 
 ## Resultados iniciales
