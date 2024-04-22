@@ -100,6 +100,8 @@ Un tensor es un arreglo multidimensional con una capacidad más alta que una mat
 Para más informaión consultar la documentación de la API de TensorFlow: https://www.tensorflow.org/api_docs
 
 Se decidió dividir los datos en lotes o batches con el objetivo de que el modelo se adapte de manera más robusta a la distribución de los datos. Esto puede ayudar a prevenir el sobreajuste al presentar al modelo una variedad de ejemplos en cada paso de entrenamiento gracias a la aleatoriedad de los lotes.
+
+Realizar este proceso significa tener que crear una función para desconvertir los datos en lotes para las predicciones de imágenes que haga el modelo porque los resultados deben poder ser interpretados por humanos.
 ## Selección del modelo
 
 ## Resultados iniciales
