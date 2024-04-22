@@ -6,15 +6,7 @@ El objetivo de este proyecto es contruir un modelo que, dada una imagen de un pe
 
 ## Datos
 Los datos fueron recuperados de Kaggle en una competencia de identificación de razas de perro:
-https://www.kaggle.com/c/dog-breed-identification/data
-
-@misc{dog-breed-identification,
-    author = {Will Cukierski},
-    title = {Dog Breed Identification},
-    publisher = {Kaggle},
-    year = {2017},
-    url = {https://kaggle.com/competitions/dog-breed-identification}
-}
+https://www.kaggle.com/c/dog-breed-identification/data [1]
 
 ### Set de datos de entrenamiento
 https://drive.google.com/drive/folders/1LeCChExH5qRdSZfEmBIX5h7671LXL-ZB?usp=sharing
@@ -125,3 +117,8 @@ Para la primera validación se entreno el modelo con solo 800 imágenes y se val
 Una exactitud del 100% en en los datos de entrenamiento podría sugerir un posible sobreajuste, especialmente si la cantidad de datos de entrenamiento es relativamente pequeña. Pese a esto se obtuvo una exactitud del 66.5% en los datos de validación, lo cual sugiere que el modelo generaliza bien más allá de los datos de entrenamiento, pero aún hay margen para mejorar. A su vez, la pérdida del modelo en los datos de validación es considerable lo cual indica que el modelo está teniendo dificultades para hacer predicciones precisas en este conjunto de datos, ya que la pérdida es bastante alta en comparación con la pérdida en los datos de entrenamiento.
 
 Considerando los resultados se concluye que el modelo es mejorable haciendo algunos ajustes como la cantidad de épocas a un número entre 10 y 100 y utilizando el total de imágenes.
+
+## Referencias:
+1. Will Cukierski. (2017). Dog Breed Identification. Kaggle. https://kaggle.com/competitions/dog-breed-identification
+2. M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen, "MobileNetV2: Inverted Residuals and Linear Bottlenecks," arXiv:1801.04381v4 [cs.CV], Mar. 2019.
+
