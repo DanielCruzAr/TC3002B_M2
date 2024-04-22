@@ -8,6 +8,14 @@ El objetivo de este proyecto es contruir un modelo que, dada una imagen de un pe
 Los datos fueron recuperados de Kaggle en una competencia de identificación de razas de perro:
 https://www.kaggle.com/c/dog-breed-identification/data
 
+@misc{dog-breed-identification,
+    author = {Will Cukierski},
+    title = {Dog Breed Identification},
+    publisher = {Kaggle},
+    year = {2017},
+    url = {https://kaggle.com/competitions/dog-breed-identification}
+}
+
 ### Set de datos de entrenamiento
 https://drive.google.com/drive/folders/1LeCChExH5qRdSZfEmBIX5h7671LXL-ZB?usp=sharing
 
