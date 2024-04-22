@@ -103,6 +103,20 @@ Se decidió dividir los datos en lotes o batches con el objetivo de que el model
 
 Realizar este proceso significa tener que crear una función para desconvertir los datos en lotes para las predicciones de imágenes que haga el modelo porque los resultados deben poder ser interpretados por humanos.
 ## Selección del modelo
+Para este proyecto se decidió utilizar un modelo basado en la arquitectura MobileNetV2, propuesta por Sandler et al. [2] la cual es una arquitectura de red neuronal convolucional (CNN) diseñada específicamente para aplicaciones de visión por computadora en dispositivos con recursos limitados, como dispositivos móviles y sistemas embebidos.
+Algunas características de esta arquitectura son las siguientes:
+* Bloques de construcción - Inverted Residuals with Linear Bottlenecks: MobileNetV2 utiliza una estructura de bloque de construcción llamada "Inverted Residuals with Linear Bottlenecks". Este bloque está diseñado para minimizar la cantidad de operaciones costosas en términos de computación, como las operaciones convolucionales estándar, mientras se mantiene la capacidad de representación de la red. Esto se logra mediante el uso de capas de convolución separables en profundidad (depthwise separable convolutions) y el uso de conexiones residuales.
+* Capas Bottleneck: Cada bloque de construcción comienza con una capa de convolución 1x1 (conocida como la capa bottleneck) para reducir la dimensionalidad de los datos de entrada, seguida de una capa de convolución separable en profundidad para capturar patrones espaciales y una capa lineal para expandir la dimensionalidad nuevamente.
+* Capa de Atención Espacial (Squeeze-and-Excitation): MobileNetV2 también implementa capas de atención espacial para ayudar a mejorar la capacidad del modelo para capturar características relevantes y suprimir el ruido. Esta capa, conocida como "Squeeze-and-Excitation", adapta dinámicamente la importancia de cada canal de características basándose en su relación espacial.
+* Escala y Anchura de Reducción: MobileNetV2 introduce un hiperparámetro llamado "factor de escala" y un nuevo bloque de construcción llamado "bloque lineal" para permitir la modulación de la resolución de entrada y el tamaño del modelo. Esto proporciona un mayor control sobre la cantidad de recursos computacionales utilizados por el modelo y permite adaptarlo a diferentes restricciones de hardware.
+
+El haber separado los datos en lotes ayuda a que el modelo reciba los datos con dimensionalidad reducida para la capa bottleneck.
+
+Se utilizo un modelo secuencial preentrenado de tensorflow que ya divide las imágenes en pequeñas cajas con cada caja conteniendo un elemento de la imagen como una persona, un coche, o, en este caso, un perro. Este modelo recibe un tamaño de entrada ` [None, 224, 224, 3]` en donde None es el lote, 224 es la altura, 224 es la anchura y 3 es la cantidad de colores (rojo, verde y azul). Se agregó una capa Dense con 120 unidades para los datos de salida, las cuales representan las 120 clases existentes en este proyecto que son las 120 razas de perro diferentes. Se utiliza la función de activación `softmax` para obtener la probabilidad de cada clase.
+
+*explicar métricas...*
+
+El modelo preentrenado fue recuperado de: https://www.kaggle.com/models/google/mobilenet-v2/tensorFlow2/130-224-classification/1 
 
 ## Resultados iniciales
 Para la primera validación se entreno el modelo con solo 800 imágenes y se validó con 200, a su vez se ajustó con 10 épocas o iteraciones. Los resultados fueron los siguientes:
