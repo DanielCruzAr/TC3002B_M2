@@ -15,10 +15,11 @@ def get_data(filename, train_path):
     labels = labels_csv["breed"].to_numpy()
     unique_breeds = np.unique(labels)
     bool_labels = [label == unique_breeds for label in labels]
-    return filenames, bool_labels
+    return filenames, bool_labels, unique_breeds
 
-def get_test_and_valid_data(filename, train_path, n_images=1000):
-    X, y = get_data(filename, train_path)
+def get_test_and_valid_data(filenames, bool_labels, n_images=1000):
+    X = filenames
+    y = bool_labels
 
     X_train, X_val, y_train, y_val = train_test_split(X[:n_images],
                                                   y[:n_images],

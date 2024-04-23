@@ -1,0 +1,36 @@
+from data_preprocessing import get_data, get_test_and_valid_data, create_data_batches
+from model import create_model, train_model
+from model_evaluation import plot_model_history
+
+def main():
+    # Obtener datos de entrenamiento y validación
+    filename = "data/labels.csv"
+    train_path = "data/train/"
+    n_images = 1000
+    filenames, bool_labels, unique_breeds = get_data(filename, train_path)
+    
+    X_train, X_val, y_train, y_val = get_test_and_valid_data(filenames, bool_labels, n_images=n_images)
+
+    # Crear batches de datos de entrenamiento y validación
+    train_data = create_data_batches(X_train, y_train)
+    validation_data = create_data_batches(X_val, y_val, valid_data=True)
+
+    # Definir modelo
+    input_shape = train_data.element_spec[0].shape
+    output_shape = len(unique_breeds)
+    model_url = "https://kaggle.com/models/google/mobilenet-v2/TensorFlow2/130-224-classification/1"
+    model = create_model(input_shape, output_shape, model_url)
+
+    # Entrenar el modelo
+    num_epochs = 10
+    fitted_model = train_model(num_epochs, model, train_data, validation_data)
+    
+    # Evaluar el modelo
+    plot_model_history(fitted_model.history.history)
+    
+    # Guardar el modelo entrenado
+    modelpath = "models/model_prototype_v1.h5"
+    fitted_model.save(modelpath)
+    
+if __name__ == "__main__":
+    main()
