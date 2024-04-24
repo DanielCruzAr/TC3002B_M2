@@ -18,8 +18,7 @@ def main():
     # Definir modelo
     input_shape = train_data.element_spec[0].shape
     output_shape = len(unique_breeds)
-    model_url = "https://kaggle.com/models/google/mobilenet-v2/TensorFlow2/130-224-classification/1"
-    model = create_model(input_shape, output_shape, model_url)
+    model = create_model(input_shape, output_shape)
 
     # Entrenar el modelo
     fitted_model = train_model(model, train_data, validation_data)

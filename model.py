@@ -1,23 +1,30 @@
-import tensorflow as tf
-import tensorflow_hub as hub
-import tf_keras as keras
+from tensorflow.keras import models, layers, regularizers
+from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.losses import CategoricalCrossentropy
 from config import MODELPATH, NUM_EPOCHS, VALIDATION_FREQ
 
-def create_model(input_shape, output_shape, url):
+def create_model(input_shape, output_shape):
+    base_model = MobileNetV2(
+        alpha=1.0,
+        include_top=False,
+        input_shape=(input_shape[1], input_shape[2], input_shape[3]), # (224, 224, 3)
+        weights='imagenet',
+        pooling=None,
+    )
+    base_model.trainable = False
+    
     # Declarar las capas del modelo
-    model = keras.Sequential([
-        hub.KerasLayer(url),
-        # TODO: Poner capas dropout o weight decay
-        keras.layers.Dense(output_shape, activation='softmax')
-    ])
+    model = models.Sequential()
+    model.add(base_model)
+    model.add(layers.GlobalAveragePooling2D())
+    model.add(layers.Dense(512, activation='relu', kernel_regularizer=regularizers.l2(0.01)))
+    model.add(layers.Dropout(0.3))
+    model.add(layers.Dense(output_shape, activation='softmax'))
     
     # Compilar el modelo
     model.compile(optimizer='adam',
-            loss=tf.losses.CategoricalCrossentropy(),
+            loss=CategoricalCrossentropy(),
             metrics=['accuracy'])
-    
-    # Construir el modelo
-    model.build(input_shape)
     
     return model
 
@@ -31,5 +38,4 @@ def train_model(model, train_data, validation_data):
     return model
 
 def load_model(modelpath=MODELPATH):
-    return keras.models.load_model(modelpath,
-                                    custom_objects={'KerasLayer': hub.KerasLayer})
+    return models.load_model(modelpath)
