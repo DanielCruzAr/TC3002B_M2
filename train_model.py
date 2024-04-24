@@ -1,15 +1,15 @@
 from data_preprocessing import get_data, get_test_and_valid_data, create_data_batches
 from model import create_model, train_model
 from model_evaluation import plot_model_history
+from config import MODELPATH
 
 def main():
     # Obtener datos de entrenamiento y validación
     filename = "data/labels.csv"
     train_path = "data/train/"
-    n_images = 1000
     filenames, bool_labels, unique_breeds = get_data(filename, train_path)
     
-    X_train, X_val, y_train, y_val = get_test_and_valid_data(filenames, bool_labels, n_images=n_images)
+    X_train, X_val, y_train, y_val = get_test_and_valid_data(filenames, bool_labels)
 
     # Crear batches de datos de entrenamiento y validación
     train_data = create_data_batches(X_train, y_train)
@@ -22,15 +22,13 @@ def main():
     model = create_model(input_shape, output_shape, model_url)
 
     # Entrenar el modelo
-    num_epochs = 10
-    fitted_model = train_model(num_epochs, model, train_data, validation_data)
+    fitted_model = train_model(model, train_data, validation_data)
     
     # Evaluar el modelo
     plot_model_history(fitted_model.history.history)
     
     # Guardar el modelo entrenado
-    modelpath = "models/model_prototype_v1.h5"
-    fitted_model.save(modelpath)
+    fitted_model.save(MODELPATH)
     
 if __name__ == "__main__":
     main()

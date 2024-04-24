@@ -1,11 +1,13 @@
 import tensorflow as tf
 import tensorflow_hub as hub
 import tf_keras as keras
+from config import MODELPATH, NUM_EPOCHS, VALIDATION_FREQ
 
 def create_model(input_shape, output_shape, url):
     # Declarar las capas del modelo
     model = keras.Sequential([
         hub.KerasLayer(url),
+        # TODO: Poner capas dropout o weight decay
         keras.layers.Dense(output_shape, activation='softmax')
     ])
     
@@ -19,15 +21,15 @@ def create_model(input_shape, output_shape, url):
     
     return model
 
-def train_model(num_epochs, model, train_data, validation_data):
+def train_model(model, train_data, validation_data):
     # Entrenar el modelo
     model.fit(x=train_data,
-            epochs=num_epochs,
+            epochs=NUM_EPOCHS,
             validation_data=validation_data,
-            validation_freq=1)
+            validation_freq=VALIDATION_FREQ)
     
     return model
 
-def load_model(modelpath):
+def load_model(modelpath=MODELPATH):
     return keras.models.load_model(modelpath,
                                     custom_objects={'KerasLayer': hub.KerasLayer})

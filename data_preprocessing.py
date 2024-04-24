@@ -2,12 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
-
-# Tamaño de imagen
-IMG_SIZE = 224
-
-# Tamaño de batch
-BATCH_SIZE = 32
+from config import IMG_SIZE, BATCH_SIZE, N_IMAGES
 
 def get_data(filename, train_path):
     labels_csv = pd.read_csv(filename)
@@ -17,7 +12,7 @@ def get_data(filename, train_path):
     bool_labels = [label == unique_breeds for label in labels]
     return filenames, bool_labels, unique_breeds
 
-def get_test_and_valid_data(filenames, bool_labels, n_images=1000):
+def get_test_and_valid_data(filenames, bool_labels, n_images=N_IMAGES):
     X = filenames
     y = bool_labels
 

@@ -1,0 +1,11 @@
+model	model_prototype_v1.h5	model_prototype_v2.h5
+n_images	1000	3000
+img_size	224	224
+batch_size	32	64
+validation_freq	1	1
+num_epochs	10	10
+extra_layers	None	None
+train_acc	1	0.9996
+train_loss	0.04	0.05
+val_acc	0.665	0.7817
+val_loss	1.28	0.75

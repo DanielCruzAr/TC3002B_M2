@@ -4,16 +4,14 @@ from model_evaluation import evaluate_model, get_confusion_matrix, plot_confusio
 
 def main():
     # Cargar el modelo
-    modelpath = "models/model_prototype_v1.h5"
-    model = load_model(modelpath)
+    model = load_model()
     
     # Obtener datos de entrenamiento y validación
     filename = "data/labels.csv"
     train_path = "data/train/"
-    n_images = 1000
     filenames, bool_labels, unique_breeds = get_data(filename, train_path)
     
-    _, X_val, _, y_val = get_test_and_valid_data(filenames, bool_labels, n_images=n_images)
+    _, X_val, _, y_val = get_test_and_valid_data(filenames, bool_labels)
 
     # Crear batches de datos de entrenamiento y validación
     validation_data = create_data_batches(X_val, y_val, valid_data=True)
