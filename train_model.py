@@ -1,4 +1,4 @@
-from data_preprocessing import get_data, get_test_and_valid_data, create_data_batches
+from data_preprocessing import get_train_data, get_test_and_valid_data, create_data_batches
 from model import create_model, train_model
 from model_evaluation import plot_model_history
 from config import MODELPATH
@@ -7,7 +7,7 @@ def main():
     # Obtener datos de entrenamiento y validación
     filename = "data/labels.csv"
     train_path = "data/train/"
-    filenames, bool_labels, unique_breeds = get_data(filename, train_path)
+    filenames, bool_labels, unique_breeds = get_train_data(filename, train_path)
     
     X_train, X_val, y_train, y_val = get_test_and_valid_data(filenames, bool_labels)
 

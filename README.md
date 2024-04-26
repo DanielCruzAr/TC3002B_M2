@@ -1,5 +1,17 @@
 # Clasificación multiclase de razas de perro
-Ejecutar el comando `python main.py`
+El archivo principal da 2 opciones:
+1. Evaluar el modelo y mostrar la matriz de confusión
+2. Hacer predicciones y mostrar los resultados como imágenes de perro con su respectiva raza
+Para correrlo ejecutar `python main.py` y poner la opción como input.
+
+**Nota**: Tendrás que cargar un modelo existente
+
+Para entrenar una nueva versión del modelo ejecutar `python train_model.py`
+
+Para cargar un modelo existente descárgalo de la siguiente carpeta: 
+https://drive.google.com/drive/folders/16ucIzNjwrheYYTMhvggaL6Wbg5NPp-I_?usp=sharing
+
+Una vez descargado ponlo en la carpeta de */models* y posteriormente en el archivo de `config.py` asegurate de poner el nombre del modelo descargado en la variable `MODELPATH`.
 
 ## Descripción
 El objetivo de este proyecto es contruir un modelo que, dada una imagen de un perro, pueda decir a que raza pertenece.
@@ -12,7 +24,7 @@ https://www.kaggle.com/c/dog-breed-identification/data [1]
 https://drive.google.com/drive/folders/1LeCChExH5qRdSZfEmBIX5h7671LXL-ZB?usp=sharing
 
 ### Set de datos de prueba
-https://drive.google.com/drive/folders/1-UGH4BtS4LyJO2V1k9KwiC1o8gx0tYfT?usp=sharing
+https://drive.google.com/drive/folders/1u92xdDJYUEPuZNc1pH4E8Is1MhmZ4Q_S?usp=sharing
 
 ## Características
 * Existen un total de 120 razas de perro, por lo cual hay 120 clases diferentes.

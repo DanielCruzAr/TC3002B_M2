@@ -1,5 +1,13 @@
-,n_images,img_size,batch_size,validation_freq,num_epochs,extra_layers,train_acc,train_loss,val_acc,val_loss
-model_prototype_v1.h5,1000,224,32,1,10,None,1,0.04,0.665,1.28
-model_prototype_v2.h5,3000,224,64,1,10,None,0.9996,0.05,0.7817,0.75
-model_prototype_v3.keras,1000,224,32,1,10,"Flatten, Dense(512, relu), Dropout(0.1)",0.9912,0.03,0.355,3.84
-model_prototype_v4.keras,1000,224,32,1,10,Flatten,1,0,0.37,14.63
+,n_images,img_size,batch_size,validation_freq,num_epochs,layer1,layer2,layer3,callbacks,train_acc,train_loss,val_acc,val_loss
+model_prototype_v1.h5,1000,224,32,1,10,None,None,None,None,1,0.04,0.665,1.28
+model_prototype_v2.h5,3000,224,64,1,10,None,None,None,None,0.9996,0.05,0.7817,0.75
+model_prototype_v3.keras,1000,224,32,1,10,Flatten,"Dense(512, relu)",Dropout(0.1),None,0.9912,0.03,0.355,3.84
+model_prototype_v4.keras,1000,224,32,1,10,Flatten,None,None,None,1,0,0.37,14.63
+model_prototype_v5.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu)",Dropout(0.3),None,1,0.04,0.63,1.36
+model_prototype_v6.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.3),None,0.9975,0.64,0.615,1.95
+model_prototype_v7.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.3),None,0.985,1.17,0.595,2.48
+model_v1,full,224,32,1,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.3),None,0.7525,1.41,0.6861,1.7
+model_v2,full,224,32,5,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.1),None,0.9354,0.55,0.7051,1.58
+model_v3,full,224,32,1,50,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.7903,1.19,0.7086,1.58
+model_v4,full,224,32,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.8263,1.04,0.7213,1.52
+model_v5.keras,full,224,96,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.005))",Dropout(0.1),"EarlyStopping(monitor=loss, p=5)",0.8789,0.8,0.7286,1.32

@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
+from tensorflow.keras.losses import CategoricalCrossentropy
 
 def get_results(history):
     # Get the accuracy and loss values from the history object
@@ -15,6 +16,11 @@ def get_results(history):
     return accuracy, loss, val_accuracy, val_loss
 
 def evaluate_model(model, validation_data):
+    # Compilar el modelo
+    model.compile(optimizer='adam',
+            loss=CategoricalCrossentropy(),
+            metrics=['accuracy'])
+    
     # Evaluate the model
     results = model.evaluate(validation_data)
     return results
