@@ -5,8 +5,8 @@ from tensorflow.keras.callbacks import EarlyStopping
 from config import MODELPATH, NUM_EPOCHS, VALIDATION_FREQ
 
 early_stopping = EarlyStopping(
-    monitor='accuracy',
-    patience=5,
+    monitor='val_accuracy',
+    patience=10,
     restore_best_weights=True
 )
 
@@ -23,7 +23,7 @@ def create_model(input_shape, output_shape):
     model = models.Sequential()
     model.add(base_model)
     model.add(layers.GlobalAveragePooling2D())
-    model.add(layers.Dense(512, activation='relu', kernel_regularizer=regularizers.l2(0.005)))
+    model.add(layers.Dense(512, activation='relu', kernel_regularizer=regularizers.l2(0.001)))
     model.add(layers.Dropout(0.1))
     model.add(layers.Dense(output_shape, activation='softmax'))
     

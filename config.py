@@ -9,7 +9,7 @@ BATCH_SIZE = 96
 
 # Hiperparámetros del modelo
 VALIDATION_FREQ = 1
-NUM_EPOCHS = 100
+NUM_EPOCHS = 50
 
 # Ruta del modelo
-MODELPATH = "models/model_v5.keras"
+MODELPATH = "models/model_v7.keras"

@@ -6,8 +6,10 @@ model_prototype_v4.keras,1000,224,32,1,10,Flatten,None,None,None,1,0,0.37,14.63
 model_prototype_v5.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu)",Dropout(0.3),None,1,0.04,0.63,1.36
 model_prototype_v6.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.3),None,0.9975,0.64,0.615,1.95
 model_prototype_v7.keras,1000,224,32,1,10,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.3),None,0.985,1.17,0.595,2.48
-model_v1,full,224,32,1,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.3),None,0.7525,1.41,0.6861,1.7
-model_v2,full,224,32,5,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.1),None,0.9354,0.55,0.7051,1.58
-model_v3,full,224,32,1,50,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.7903,1.19,0.7086,1.58
-model_v4,full,224,32,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.8263,1.04,0.7213,1.52
-model_v5.keras,full,224,96,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.005))",Dropout(0.1),"EarlyStopping(monitor=loss, p=5)",0.8789,0.8,0.7286,1.32
+model_v1,10222,224,32,1,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.3),None,0.7525,1.41,0.6861,1.7
+model_v2,10222,224,32,5,25,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.1),None,0.9354,0.55,0.7051,1.58
+model_v3,10222,224,32,1,50,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.7903,1.19,0.7086,1.58
+model_v4,10222,224,32,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.01))",Dropout(0.2),None,0.8263,1.04,0.7213,1.52
+model_v5.keras,10222,224,96,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.005))",Dropout(0.1),"EarlyStopping(monitor=loss, p=5)",0.8789,0.8,0.7286,1.32
+model_v6.keras,10222,224,96,1,100,GlobalAveragePooling2D,"Dense(512, relu, L2(0.005))",Dropout(0.1),"EarlyStopping(monitor=val_accuracy, p=5)",0.8827,0.7892,0.7193,1.31
+model_v7.keras,10222,224,96,1,50,GlobalAveragePooling2D,"Dense(512, relu, L2(0.001))",Dropout(0.1),"EarlyStopping(monitor=val_accuracy, p=10)",0.966,0.39,0.7589,1.18
