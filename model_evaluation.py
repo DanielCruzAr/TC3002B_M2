@@ -67,8 +67,10 @@ def get_confusion_matrix(model, validation_data, y_val):
     return cm
 
 def plot_confusion_matrix(cm, class_labels):
-    plt.figure(figsize=(30, 30))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
+    for i in range(len(class_labels)):
+        print(f"{i}: {class_labels[i]}")
+    plt.figure(figsize=(15, 15))
+    sns.heatmap(cm, annot=False, fmt='d', cmap='Blues')
     plt.xlabel('Predicted Labels')
     plt.ylabel('True Labels')
     plt.title('Confusion Matrix')
