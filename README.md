@@ -130,7 +130,8 @@ Se utilizará la función `CategoricalCrossentropy()` para calcular la pérdida 
 
 El modelo preentrenado fue recuperado de: https://www.kaggle.com/models/google/mobilenet-v2/tensorFlow2/130-224-classification/1 
 
-## Resultados iniciales
+## Resultados
+### Resultados del prototipo inicial
 Para la primera validación se entreno el modelo con solo 800 imágenes y se validó con 200, a su vez se ajustó con 10 épocas o iteraciones. Los resultados fueron los siguientes:
 **Datos de entrenamiento:**
 * Exactitud: 100.00%
@@ -144,8 +145,39 @@ Una exactitud del 100% en en los datos de entrenamiento podría sugerir un posib
 
 Considerando los resultados se concluye que el modelo es mejorable haciendo algunos ajustes como la cantidad de épocas a un número entre 10 y 100 y utilizando el total de imágenes.
 
-## Resultados finales
-El último modelo fue entrenado con un total de 10222 imágenes con lotes de tamaño 96 y 50 épocas. Los reultados fueron los siguientes:
+### Resultados del primer modelo entrenado con todos los datos
+Para el primer modelo entrenado con el set completo de datos se utilizó la siguiente arquitectura:
+1. Modelo base de MobilenetV2
+2. GlobalAveragePooling2D
+3. Dense con 512 unidades
+4. Dropout de 0.3
+Y con los siguientes parámetros
+* Tamaño de batch: 32
+* Épocas: 25
+Los resultados fueron los siguientes:
+**Datos de entrenamiento:**
+* Exactitud: 75.25%
+* Pérdida: 1.41
+
+**Datos de validación:**
+* Exactitud: 68.61%
+* Pérdida: 1.7
+
+![Exactitud](https://github.com/DanielCruzAr/TC3002B_M2/blob/main/graphs/model_v1_acc.png)
+
+![Pérdida](https://github.com/DanielCruzAr/TC3002B_M2/blob/main/graphs/model_v1_loss.png)
+
+### Resultados finales
+Para el último modelo entrenado se utilizó la siguiente arquitectura:
+1. Modelo base de MobilenetV2
+2. GlobalAveragePooling2D
+3. Dense con 512 unidades y L2 de 0.001
+4. Dropout de 0.1
+5. Función callback EarlyStopping monitoreando val_accuracy y con paciencia de 10 iteraciones/épocas
+Y con los siguientes parámetros
+* Tamaño de batch: 96
+* Épocas: 50
+Los reultados fueron los siguientes:
 **Datos de entrenamiento:**
 * Exactitud: 96.60%
 * Pérdida: 0.39
@@ -154,7 +186,22 @@ El último modelo fue entrenado con un total de 10222 imágenes con lotes de tam
 * Exactitud: 75.89%
 * Pérdida: 1.18
 
+![Exactitud](https://github.com/DanielCruzAr/TC3002B_M2/blob/main/graphs/model_v7_acc.png)
+
+Como se observa en la imagen de exactitud, el aprendizaje del modelo se queda estancado después de alguna épocas y no sube de 75% en los datos de validación, a pesar de que si sube en los de prueba. Esto puede deberse a un sobreajuste en las épocas iniciales, lo que resultó en una mejora temporal en la exactitud. Sin embargo, a medida que continúa entrenando, el modelo no puede generalizar bien a datos nuevos y la exactitud se estabiliza en un nivel más bajo.
+
+![Pérdida](https://github.com/DanielCruzAr/TC3002B_M2/blob/main/graphs/model_v7_loss.png)
+
+![Matriz de confusión](https://github.com/DanielCruzAr/TC3002B_M2/blob/main/graphs/model_v7_cm.png)
+
+Como se observa en la matriz de confusión, los datos están concentrados en la diagonal que va del extremo superior izquierdo al extremo inferior derecho, dicha diagonal representa la convergencia entre la etiqueta predicha por el modelo y la etiqueta real. Esto significa que en su gran mayoría el modelo está realizando predicciones acertadas.
+
 Las arquitecturas utilizadas y resultados obtenidos de todos los modelos entrenados pueden consultarse en el archivo `results.csv`. Adicionalmente las graficas se encuentran en la carpeta `graphs`.
+
+## Conclusiones
+Pese al posible sobreajuste en los datos mencionado anteriormente, se decidió utilizar el último modelo **(model_v7.keras)** porque fue el que obtuvo mayor exactitud en los datos de validación y el que pudo hacer mejores predicciones.
+
+Para futuros trabajos se corregirá el sobreajuste aumentanto ligeramente la regularización y haciendo un poco más compleja la arquitectura del modelo. 
 
 ## Referencias:
 1. Will Cukierski. (2017). Dog Breed Identification. Kaggle. https://kaggle.com/competitions/dog-breed-identification
