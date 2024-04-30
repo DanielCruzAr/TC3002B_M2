@@ -144,6 +144,18 @@ Una exactitud del 100% en en los datos de entrenamiento podría sugerir un posib
 
 Considerando los resultados se concluye que el modelo es mejorable haciendo algunos ajustes como la cantidad de épocas a un número entre 10 y 100 y utilizando el total de imágenes.
 
+## Resultados finales
+El último modelo fue entrenado con un total de 10222 imágenes con lotes de tamaño 96 y 50 épocas. Los reultados fueron los siguientes:
+**Datos de entrenamiento:**
+* Exactitud: 96.60%
+* Pérdida: 0.39
+
+**Datos de validación:**
+* Exactitud: 75.89%
+* Pérdida: 1.18
+
+Las arquitecturas utilizadas y resultados obtenidos de todos los modelos entrenados pueden consultarse en el archivo `results.csv`. Adicionalmente las graficas se encuentran en la carpeta `graphs`.
+
 ## Referencias:
 1. Will Cukierski. (2017). Dog Breed Identification. Kaggle. https://kaggle.com/competitions/dog-breed-identification
 2. M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen, "MobileNetV2: Inverted Residuals and Linear Bottlenecks," arXiv:1801.04381v4 [cs.CV], Mar. 2019.
